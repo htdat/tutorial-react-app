@@ -11,6 +11,14 @@ function Square(props) {
   );
 }
 
+function SortButton(props) {
+  return (
+    <button className="sort-button" onClick={props.onClick}>
+      {props.isAscending ? "Sort Descending" : "Sort Ascending"}
+    </button>
+  );
+}
+
 
 class Board extends React.Component {
   renderSquare(i) {
@@ -56,6 +64,7 @@ class Game extends React.Component {
       }],
       stepNumber: 0,
       xIsNext: true,
+      isAscending: true,
     };
   }
 
@@ -78,6 +87,12 @@ class Game extends React.Component {
 
   }
 
+  handleSortButton() {
+    this.setState({
+      isAscending: ! this.state.isAscending,
+    });
+  }
+
   jumpTo(step) {
     this.setState({
       stepNumber: step,
@@ -90,8 +105,9 @@ class Game extends React.Component {
     const current = history[this.state.stepNumber];
     const winner = calculateWinner(current.squares);
     const currentStep = this.state.stepNumber;
+    const isAscending = this.state.isAscending;
 
-    const moves = history.map( (step, move) => {
+    let moves = history.map( (step, move) => {
       let desc = move ?
         'Go to move #' + move + " - last location: " + convertColRow(step.lastSquare) :
         'Go to game start';
@@ -101,8 +117,10 @@ class Game extends React.Component {
           <button className={( currentStep === move ) ? 'currentMove' : null} onClick={() => this.jumpTo(move)}>{desc}</button>
         </li>
       );
-    }
-  );
+    });
+
+    // reverse moves if SortButton is Descending
+    moves = isAscending ? moves : moves.slice(0).reverse()
 
     let status;
     if ( winner ) {
@@ -121,6 +139,12 @@ class Game extends React.Component {
         </div>
         <div className="game-info">
           <div>{status}</div>
+          <div>
+            <SortButton
+              isAscending={isAscending}
+              onClick={() => this.handleSortButton()}
+            />
+          </div>
           <ol>{moves}</ol>
         </div>
       </div>
