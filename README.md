@@ -1,3 +1,16 @@
+# Introduction
+
+This project is my learning effort for [React Tutorial v16.12.0](https://reactjs.org/tutorial/tutorial.html).
+
+It includes two versions:
+
+- [v1.0](https://github.com/htdat/tutorial-react-app/releases/tag/v1.0-finish-tutorial): Follow all steps in the tutorial.
+- [v2.0](https://github.com/htdat/tutorial-react-app/releases/tag/v2.0-extra): Finish all improvements as mentioned in the [Wrapping up](https://reactjs.org/tutorial/tutorial.html#wrapping-up) section.
+
+The below text is from https://github.com/facebook/create-react-app.
+
+---
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
