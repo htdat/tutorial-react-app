@@ -52,3 +52,7 @@ ol, ul {
 .currentMove {
   font-weight: bold;
 }
+
+.square.win {
+  background-color: pink;
+}
